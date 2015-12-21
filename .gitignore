@@ -1,0 +1,11 @@
+# Ignore bundler config.
+.bundle
+vendor/bundle
+
+# Sass-Cachefiles
+.sass-cache
+public/js/vendor
+
+# OS cache file
+.DS_Store
+*.swp

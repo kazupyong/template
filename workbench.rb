@@ -4,7 +4,6 @@ Bundler.require
 class Workbench < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
-    sass_options = {:cache_location => "/tmp/sass-cache"}
   end
 
   get '/' do

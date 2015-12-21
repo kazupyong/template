@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    title= @title + ' | Site Workbench'
+    link href="/css/application.css" rel="stylesheet"
+  body
+    == yield
+    script src="/js/vendor/requirejs/require.js" data-main="/js/application"

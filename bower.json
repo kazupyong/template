@@ -1,0 +1,23 @@
+{
+  "name": "workbench",
+  "version": "0.0.0",
+  "authors": [
+    "Kazuya Sago <kazupyong@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "http://kazupyong.hatenablog.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "latest",
+    "jquery": "latest"
+  }
+}

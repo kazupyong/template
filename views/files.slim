@@ -1,0 +1,15 @@
+.container
+  .page-header
+  h4 リスト
+  form action="/files/reload" method="POST"
+    input.button type="submit" value="ファイル一覧読み込み"
+  - unless @files.empty?
+    table.table.table-bordered.table-striped
+      tbody
+        td ファイル名
+        td 言語
+      - @files.each do |file|
+         tr
+          td
+            a href="#{"/files/" + file.id.to_s}" =file.file_path
+          td=file.locale

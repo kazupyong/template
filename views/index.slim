@@ -1,2 +1,43 @@
-h1 Workbench
-p Workbench for my site.
+.container-fluid
+  .page-header
+    h2 Add new Translate
+    form.form-horizontal action="/new" method="POST"
+      .form-group
+        label.col-sm-2.control-label
+          | translate_key
+        input type="text" name="translate_key"
+      .form-group
+        label.col-sm-2.control-label
+          | translate_value
+        textarea name="translate_value"
+      .form-group
+        label.col-sm-2.control-label
+          | translate_locale
+        input type="text" name="locale" value='ja'
+      .form-group
+        label
+        input.button type="submit" value="SUBMIT"
+  .page-header
+    h2 Add new Translate
+    form.form-horizontal action="/translation_list/reload" method="POST"
+      .form-group
+        label
+          | translate_file_name
+        select name="id"
+          - @files.each do |file|
+            option value=file.id =file.file_path
+        label
+          |
+        input.button type="submit" value="SUBMIT"
+  .page-header
+    h2 Add new Translate
+    form.form-horizontal action="/list" method="GET"
+      .form-group
+        label
+          | translate_file_name
+        select name="id"
+          - @files.each do |file|
+            option value=file.id =file.file_path
+        label
+          |
+        input.button type="submit" value="SUBMIT"

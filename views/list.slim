@@ -1,0 +1,34 @@
+.container-fluid
+  .page-header
+    h4 リスト
+    form.form-horizontal action="/all" method="GET"
+      .form-group
+        label.col-sm-2.control-label
+          | 検索する
+        input type="text" name="query" value=params['query']
+        input.button type="submit" value="検索"
+  - unless @translations.empty?
+    table.table.table-bordered
+      tbody
+        td キー
+        td 日本語の値
+        td 他言語の値
+      - @translations.each do |translation|
+
+         tr
+          td=translation.translate_key
+          td=@ja_translations[translation.translate_key]
+          td
+            .editable_textile id=translation.id
+              =translation.translate_value
+javascript:
+  $(document).ready(function() {
+    $('.editable_textile').editable('/update',
+      {
+        type   : 'textarea',
+        name   : 'translate_value',
+        submit : 'OK',
+      }
+      );
+    }
+  );

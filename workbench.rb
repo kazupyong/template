@@ -84,6 +84,20 @@ class Workbench < Sinatra::Base
     end
     redirect to('/')
   end
+
+  get '/files/write' do
+    file_id = 3
+    @title = '書き出し'
+    file = Files.find(file_id)
+    redirect to('/') unless File.exist?(file.file_path)
+    translations = Translations.where(file_id: file.id).pluck(:translate_key, :translate_value).to_h
+    p translations
+    filename = "/Users/kazuya/home/i18-translator/show2.ja.yml"
+    open(filename,"w") do |e|
+      YAML.dump(translations, e)
+    end
+    p YAML.load_file(file.file_path)
+  end
 end
 
 def hash_to_object_style(translations, key = nil, values = {})
@@ -101,6 +115,21 @@ def hash_to_object_style(translations, key = nil, values = {})
   values
 end
 
+
+def object_to_hash_style(translations, key = nil, values = {})
+  case translations
+    when Hash
+      translations.inject({}) do |hash, (k, v)|
+        k = key.to_s + '.' + k.to_s unless key.nil? || (I18n.available_locales.include?(key.to_sym))
+        values[k] = v unless v.kind_of?(Hash)
+        hash[k] = hash_to_object_style(v, k, values) # Hash の値を再帰的に処理
+        hash
+      end
+    else
+      translations
+  end
+  values
+end
 def detect_locales(file_path)
   locale = 'ja'
   I18n.available_locales.each do |localeset|

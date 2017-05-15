@@ -1,6 +1,6 @@
 development:
   adapter: mysql2
-  database: i18n
+  database: i18n2
   host: localhost
   username: root
   password:

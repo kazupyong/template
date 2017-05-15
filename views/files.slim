@@ -11,5 +11,5 @@
       - @files.each do |file|
          tr
           td
-            a href="#{"/files/" + file.id.to_s}" =file.file_path
+            a href="#{"/list?id=" + file.id.to_s}" =file.file_path
           td=file.locale

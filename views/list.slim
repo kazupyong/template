@@ -4,31 +4,43 @@
     form.form-horizontal action="/all" method="GET"
       .form-group
         label.col-sm-2.control-label
-          | 検索する
-        input type="text" name="query" value=params['query']
+        input.filter name="Key" placeholder="Key" data-col="Key"
+        input.filter name="Japanese" placeholder="Japanese" data-col="Japanese"
+        input.filter name="English" placeholder="English" data-col="English"
         input.button type="submit" value="検索"
   - unless @translations.empty?
     table.table.table-bordered
-      tbody
-        td キー
-        td 日本語の値
-        td 他言語の値
+      thead
+        th Key
+        th Count
+        th Japanese
+        th English
       - @translations.each do |translation|
-
-         tr
-          td=translation.translate_key
-          td=@ja_translations[translation.translate_key]
+        tr
+          td= translation.translate_key
+          td= translation.match_count
           td
-            .editable_textile id=translation.id
-              =translation.translate_value
+            .english_text id=translation.id
+              = @ja_translations[translation.translate_key]
+          td
+            .english_text id=translation.id
+              = translation.translate_value
 javascript:
-  $(document).ready(function() {
-    $('.editable_textile').editable('/update',
-      {
-        type   : 'textarea',
-        name   : 'translate_value',
-        submit : 'OK',
-      }
+  $(document).ready(function () {
+      $('.english_text').editable('/update',
+          {
+            type: 'textarea',
+            name: 'translate_value',
+            submit: 'OK',
+          }
       );
+      $('.japanese_text').editable('/update',
+          {
+            type: 'textarea',
+            name: 'translate_value',
+            submit: 'OK',
+          }
+      );
+      $('.filter').multifilter();
     }
   );

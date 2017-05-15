@@ -18,6 +18,7 @@ group :develoopment do
   gem 'rack-livereload'
   gem 'rspec'
   gem 'rack-test'
+  gem 'rubocop', require: false
 end
 
 # For this Project

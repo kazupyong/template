@@ -15,29 +15,23 @@
           | translate_locale
         input type="text" name="locale" value='ja'
       .form-group
-        label
-        input.button type="submit" value="SUBMIT"
-  .page-header
-    h2 Add new Translate
-    form.form-horizontal action="/translation_list/reload" method="POST"
-      .form-group
-        label
+        label.col-sm-2.control-label
           | translate_file_name
         select name="id"
           - @files.each do |file|
-            option value=file.id =file.file_path
-        label
-          |
-        input.button type="submit" value="SUBMIT"
-  .page-header
-    h2 Add new Translate
-    form.form-horizontal action="/list" method="GET"
+            option value=file.id = file.file_path
       .form-group
         label
-          | translate_file_name
-        select name="id"
-          - @files.each do |file|
-            option value=file.id =file.file_path
-        label
+        input.button type="submit" value="Add New Translate"
+  .page-header
+    h2 Settings
+    form.form-horizontal action="/files/reload" method="POST"
+      .form-group
+        label.col-sm-2.control-label
           |
-        input.button type="submit" value="SUBMIT"
+        input.button type="submit" value="Reload All Translation Files"
+    form.form-horizontal action="/files/write" method="POST"
+      .form-group
+        label.col-sm-2.control-label
+          |
+        input.button type="submit" value="Write All Translation Files"
